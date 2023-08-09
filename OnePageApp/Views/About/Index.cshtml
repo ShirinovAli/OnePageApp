@@ -1,0 +1,46 @@
+﻿@model List<AboutListDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="my-4">
+    <div>
+        <a href="@Url.Action("Create","About")" class="btn btn-primary">Add</a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Button Text</th>
+                <th scope="col">Operations</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int count = 1;
+            }
+            @foreach (var about in Model)
+            {
+                <tr>
+                    <td>@count</td>
+                    <td>@about.Title</td>
+                    <td>@about.Description</td>
+                    <td>@about.ButtonText</td>
+
+                    <td>
+                        <a href="@Url.Action("Edit","About", new {id = about.AboutId})" class="btn btn-warning">Edit</a>/
+                        <a href="@Url.Action("Delete","About", new {id = about.AboutId})" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+
+                count++;
+            }
+
+        </tbody>
+    </table>
+</div>
+
